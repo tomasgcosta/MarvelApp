@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import api from "../../services/api";
-import CreatorType from "../../types/Creator";
-import { filterOptions } from "../../helpers/helper";
+import api from "../services/api";
+import CreatorType from "../types/Creator";
+import { filterOptions } from "../helpers/helper";
 
 export const Creator: React.FC = () => {
   const [creators, setCreators] = useState<CreatorType[]>([]);
