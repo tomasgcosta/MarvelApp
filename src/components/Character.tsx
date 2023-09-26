@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import api from "../../services/api";
-import CharacterType from "../../types/Character";
+import api from "../services/api";
+import CharacterType from "../types/Character";
 
 export const Character: React.FC = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([]);

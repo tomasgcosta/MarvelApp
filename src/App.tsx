@@ -1,12 +1,12 @@
 import "./App.css";
-import { Character } from "./Pages/components/Character";
-import { Creator } from "./Pages/components/Creator";
+import { Character } from "./components/Character";
+import { Creator } from "./components/Creator";
 
 const App: React.FC = () => {
   return (
     <div>
-      {/* <Character /> */}
-      <Creator />
+      <Character />
+      {/* <Creator /> */}
     </div>
   );
 };
