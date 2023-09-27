@@ -6,5 +6,12 @@ export default interface CharacterType {
         path: string,
         extension: string
     },
+    comics: {
+        available: number,
+        items: [{
+            resourceURI: string,
+            name: string
+        }]
+    }
 
 }

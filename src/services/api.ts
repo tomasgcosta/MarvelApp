@@ -15,11 +15,10 @@ const api = axios.create({
     ts: time,
     apikey: publicKey,
     hash,
-    limit: 100,
+    limit: 20,
    
   },
 });
 
 console.log(publicUrl)
-
 export default api;
