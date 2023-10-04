@@ -11,7 +11,7 @@ export const Character: React.FC = () => {
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const result = await findCharacterByName(e.target.value);
-    setFoundChar(result);
+    /* setFoundChar(result); */
 
     if (e.target.value) {
       try {
@@ -43,16 +43,16 @@ export const Character: React.FC = () => {
 
   const handleSuggestionClick = (suggestedChar: CharacterType) => {
     // Clear suggestions and set the selected character
+    setFoundChar([suggestedChar])
     setSuggestion([]);
-    setFoundChar([suggestedChar]);
   };
 
   return (
-    <div className="flex relative justify-center">
-      <input className='min-w-[45%] mt-[5rem] rounded-sm px-2 py-2' onChange={handleChange} placeholder="Choose a Marvel character name" />
+    <div className="flex flex-col relative justify-center items-center">
+      <input className='w-[25rem] mt-[5rem] rounded-sm px-2 py-2 placeholder:translate-' onChange={handleChange} placeholder="Choose a Marvel character name" />
       <div>
-        {suggestion.map((suggestedChar: CharacterType) => (
-          <div key={suggestedChar.id} onClick={() => handleSuggestionClick(suggestedChar)}>
+        {suggestion?.map((suggestedChar: CharacterType) => (
+          <div className="" key={suggestedChar.id} onClick={() => handleSuggestionClick(suggestedChar)}>
             {suggestedChar.name}
             <img className='h-[80px] rounded-md' src={`${suggestedChar.thumbnail.path}.${suggestedChar.thumbnail.extension}`} alt="" />
           </div>
@@ -70,17 +70,17 @@ export const Character: React.FC = () => {
             <div>
               <h1>Comics</h1>
               {foundComic.map((comic, idx) => (
-                <div key={idx}>
+                <div className="flex flex-col bg-red-500"><div className='' key={idx}>
                   <span>{comic.title}</span>
-                  <img
+                  <img className="max-w-[10rem] max-h-[10rem]"
                     src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                     alt={`Picture of ${comic.title}`}
                   />
-                  <span>{comic.description}</span>
+                  <span className="">{comic.description}</span>
                   <div>
                     {comic.creators.items.map((creator: string) => creator.name)}
                   </div>
-                </div>
+                </div></div>
               ))}
             </div>
           </div>
