@@ -5,7 +5,7 @@ import { Navbar } from "./components/NavBar";
 
 const App: React.FC = () => {
   return (
-    <div className="bg-[#e9e9e9] min-h-screen">
+    <div className="bg-[#e9e9e9] min-h-[100vh]">
       <Navbar />
       <Character />
       {/* <Creator /> */}

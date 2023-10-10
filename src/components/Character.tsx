@@ -43,48 +43,81 @@ export const Character: React.FC = () => {
 
   const handleSuggestionClick = (suggestedChar: CharacterType) => {
     // Clear suggestions and set the selected character
-    setFoundChar([suggestedChar])
+    setFoundChar([suggestedChar]);
     setSuggestion([]);
   };
 
   return (
     <div className="flex flex-col relative justify-center items-center">
-      <input className='w-[25rem] mt-[5rem] rounded-sm px-2 py-2 placeholder:translate-' onChange={handleChange} placeholder="Choose a Marvel character name" />
-      <div>
-        {suggestion?.map((suggestedChar: CharacterType) => (
-          <div className="" key={suggestedChar.id} onClick={() => handleSuggestionClick(suggestedChar)}>
-            {suggestedChar.name}
-            <img className='h-[80px] rounded-md' src={`${suggestedChar.thumbnail.path}.${suggestedChar.thumbnail.extension}`} alt="" />
-          </div>
-        ))}
+      <div className="content-center">
+        <input
+          className="min-w-[32rem] mt-[5rem] rounded-sm px-2 py-2 placeholder:translate- relative"
+          onChange={handleChange}
+          placeholder="Choose a Marvel character name"
+        />
+        <div className="bg-slate-800 bg-opacity-40 rounded-b-sm absolute shadow-md shadow-slate-500 min-w-[30rem] ">
+          {suggestion?.map((suggestedChar: CharacterType) => (
+            <div
+              className="flex flex-row py-1 min-w-full px-1 mt-1rounded-sm cursor-pointer"
+              key={suggestedChar.id}
+              onClick={() => handleSuggestionClick(suggestedChar)}
+            >
+              <div className="shadow-sm">
+                <img
+                  className="min-h-[80px] max-h-[80px] max-w-[80px] min-w-[80px] rounded-sm"
+                  src={`${suggestedChar.thumbnail.path}.${suggestedChar.thumbnail.extension}`}
+                  alt=""
+                />
+              </div>
+              <span className="flex items-center justify-start min-w-[25rem] py-1 px-1 ml-2 rounded-sm font-medium">
+                {suggestedChar.name}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
       {foundComic.length > 0 &&
         foundChar.map((ele) => (
-          <div key={ele.id}>
-            <img className=""
+          <div className="px-4 py-4">
+          <div className="flex flex-row shadow-md shadow-slate-400" key={ele.id}>
+            <img
+              className="min-h-[400px] max-h-[400px] max-w-[400px] min-w-[400px] rounded-sm"
               src={`${ele.thumbnail.path}.${ele.thumbnail.extension}`}
               alt={`Picture of ${ele.name}`}
             />
-            <h3>{ele.name}</h3>
-            <span>{ele.description}</span>
-            <div>
-              <h1>Comics</h1>
+            <div className="flex flex-col bg-gray-300 rounded-sm ">
+            <h3 className="flex items-center justify-center text-[5rem] border-b-2 border-red-600">{ele.name}</h3>
+            <span className="items-center px-4 py-4 text-[1.2rem]">{ele.description}</span>
+            </div>
+            </div>
+            <div className="flex flex-col">
+              <h1 className=" flex py-1 px-1 justify-center items-center text-[4rem]">Comics</h1>
               {foundComic.map((comic, idx) => (
-                <div className="flex flex-col bg-red-500"><div className='' key={idx}>
-                  <span>{comic.title}</span>
-                  <img className="max-w-[10rem] max-h-[10rem]"
-                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                    alt={`Picture of ${comic.title}`}
-                  />
-                  <span className="">{comic.description}</span>
-                  <div>
-                    {comic.creators.items.map((creator: string) => creator.name)}
+                <div className=" py-1 px-1 bg-gray-300 rounded-sm">
+                  <div className="flex flex-row bg-gray-500 rounded-sm items-center" key={idx}>
+                    <img
+                      className="max-w-[11rem] max-h-[16rem] min-w-[11rem] min-h-[16rem] rounded-sm"
+                      src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                      alt={`Picture of ${comic.title}`}
+                    />
+                    <div className="flex flex-col justify-center items-center">
+                    <span className="text-[1.5rem] border-b-2 border-red-600">{comic.title}</span>
+                    <span className="items-center px-4 py-4 text-[1.2rem]">{comic.description}</span>
+                    <div className="flex flex-row gap-2 mt-4">
+                      Created by:
+                      {comic.creators.items.map(
+                        (creator: string) => <span className="">{creator.name}</span>
+                      )}
+                    </div>
+                    </div>
                   </div>
-                </div></div>
+                </div>
               ))}
             </div>
+          
           </div>
         ))}
     </div>
+    
   );
 };
