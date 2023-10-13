@@ -68,7 +68,7 @@ export const Character: React.FC = () => {
                   src={`${suggestedChar.thumbnail.path}.${suggestedChar.thumbnail.extension}`}
                   alt=""
                 />
-                <div className="absolute inset-0 bg-gradient-to-t hover:bg-gradient-to-t hover:from-red-600 hover:from-1% transition-opacity duration-150"/>
+                <div className="absolute inset-0 b hover:bg-red-600 hover:bg-opacity-40 transition-opacity duration-150" />
               </div>
               <span className="flex items-center justify-start min-w-[25rem] py-1 px-1 ml-2 rounded-sm font-medium">
                 {suggestedChar.name}
@@ -80,46 +80,60 @@ export const Character: React.FC = () => {
       {foundComic.length > 0 &&
         foundChar.map((ele) => (
           <div className="px-4 py-4">
-          <div className="flex flex-row shadow-md shadow-slate-400" key={ele.id}>
-            <img
-              className="min-h-[400px] max-h-[400px] max-w-[400px] min-w-[400px] rounded-sm"
-              src={`${ele.thumbnail.path}.${ele.thumbnail.extension}`}
-              alt={`Picture of ${ele.name}`}
-            />
-            <div className="flex flex-col bg-gray-300 rounded-sm ">
-            <h3 className="flex items-center justify-center text-[5rem] border-b-2 border-red-600">{ele.name}</h3>
-            <span className="items-center px-4 py-4 text-[1.2rem]">{ele.description}</span>
+            <h3 className="flex  justify-start text-[3rem] text-white">
+              <span className="">{ele.name}</span>
+            </h3>
+            <div className="flex flex-row " key={ele.id}>
+              <img
+                className="min-h-[400px] max-h-[400px] max-w-[400px] min-w-[400px] rounded-l-md"
+                src={`${ele.thumbnail.path}.${ele.thumbnail.extension}`}
+                alt={`Picture of ${ele.name}`}
+              />
+              <div className="flex flex-col bg-gray-300 rounded-r-md">
+                <span className="items-center px-4 py-4 text-[1.2rem]">
+                  {ele.description}
+                </span>
+              </div>
             </div>
-            </div>
-            <div className="flex flex-col">
-              <h1 className=" flex py-1 px-1 justify-center items-center text-[4rem]">Comics</h1>
+
+            <h1 className=" flex py-4 justify-start items-center text-white text-[3rem]">
+              Comics
+            </h1>
+            <div className="grid grid-cols-5 items-center px-[7rem]">
               {foundComic.map((comic, idx) => (
-                <div className=" py-1 px-1 bg-gray-300 rounded-sm">
-                  <div className="flex flex-row bg-gray-400 rounded-sm items-center" key={idx}>
+                <div className=" py-1 px-1">
+                  <div className="" key={idx}>
                     <img
-                      className="max-w-[11rem] max-h-[16rem] min-w-[11rem] min-h-[16rem] rounded-sm"
+                      className="max-w-[14rem] max-h-[20rem] min-w-[14rem] min-h-[20rem] rounded-sm shadow-md"
                       src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                       alt={`Cover of ${comic.title}`}
                     />
-                    <div className="flex flex-col justify-center items-center content-center place-content-center">
-                      
-                    <span className="text-[1.5rem] border-b-2 border-red-600">{comic.title}</span>
-                    <span className="items-center px-4 py-4 text-[1rem]">{comic.description}</span>
-                    <div className="flex flex-row gap-2 mt-4 px-2">
-                    
-                      {comic.creators.items.map(
-                        (creator: string) => <span className="text-[1rem]">{creator.name}</span>
-                      )}
-                    </div>
+                    <div className="">
+                      <span className="text-white font-medium">
+                        {comic.title}
+                      </span>
+
+                      <div className="">
+                        {comic.creators.items
+                          .slice(0, 2)
+                          .map((creator, idx) => (
+                            <span
+                              key={idx}
+                              className="text-[0.8rem] text-white font-thin"
+                            >
+                              {idx > 0 && ", "}
+                              {creator.name.length > 1 ? creator.name : ""}
+                              
+                            </span>
+                          ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          
           </div>
         ))}
     </div>
-    
   );
 };
