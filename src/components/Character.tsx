@@ -55,19 +55,20 @@ export const Character: React.FC = () => {
           onChange={handleChange}
           placeholder="Choose a Marvel character name"
         />
-        <div className="bg-slate-800 bg-opacity-40 rounded-b-sm absolute shadow-md shadow-slate-500 min-w-[30rem] ">
+        <div className="bg-slate-400 mt-[0.05rem] rounded-b-sm absolute shadow-md shadow-slate-700 min-w-[30rem] ">
           {suggestion?.map((suggestedChar: CharacterType) => (
             <div
-              className="flex flex-row py-1 min-w-full px-1 mt-1rounded-sm cursor-pointer"
+              className="flex flex-row py-1 min-w-full px-1 mt-1rounded-sm cursor-pointer hover:bg-red-600 duration-150 ease-in-out"
               key={suggestedChar.id}
               onClick={() => handleSuggestionClick(suggestedChar)}
             >
-              <div className="shadow-sm">
+              <div className="relative shadow-sm">
                 <img
                   className="min-h-[80px] max-h-[80px] max-w-[80px] min-w-[80px] rounded-sm"
                   src={`${suggestedChar.thumbnail.path}.${suggestedChar.thumbnail.extension}`}
                   alt=""
                 />
+                <div className="absolute inset-0 bg-gradient-to-t hover:bg-gradient-to-t hover:from-red-600 hover:from-1% transition-opacity duration-150"/>
               </div>
               <span className="flex items-center justify-start min-w-[25rem] py-1 px-1 ml-2 rounded-sm font-medium">
                 {suggestedChar.name}
@@ -94,19 +95,20 @@ export const Character: React.FC = () => {
               <h1 className=" flex py-1 px-1 justify-center items-center text-[4rem]">Comics</h1>
               {foundComic.map((comic, idx) => (
                 <div className=" py-1 px-1 bg-gray-300 rounded-sm">
-                  <div className="flex flex-row bg-gray-500 rounded-sm items-center" key={idx}>
+                  <div className="flex flex-row bg-gray-400 rounded-sm items-center" key={idx}>
                     <img
                       className="max-w-[11rem] max-h-[16rem] min-w-[11rem] min-h-[16rem] rounded-sm"
                       src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                      alt={`Picture of ${comic.title}`}
+                      alt={`Cover of ${comic.title}`}
                     />
-                    <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col justify-center items-center content-center place-content-center">
+                      
                     <span className="text-[1.5rem] border-b-2 border-red-600">{comic.title}</span>
-                    <span className="items-center px-4 py-4 text-[1.2rem]">{comic.description}</span>
-                    <div className="flex flex-row gap-2 mt-4">
-                      Created by:
+                    <span className="items-center px-4 py-4 text-[1rem]">{comic.description}</span>
+                    <div className="flex flex-row gap-2 mt-4 px-2">
+                    
                       {comic.creators.items.map(
-                        (creator: string) => <span className="">{creator.name}</span>
+                        (creator: string) => <span className="text-[1rem]">{creator.name}</span>
                       )}
                     </div>
                     </div>
