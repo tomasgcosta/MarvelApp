@@ -58,7 +58,7 @@ export const Character: React.FC = () => {
         <div className="bg-slate-400 mt-[0.05rem] rounded-b-sm absolute shadow-md shadow-slate-700 min-w-[30rem] ">
           {suggestion?.map((suggestedChar: CharacterType) => (
             <div
-              className="flex flex-row py-1 min-w-full px-1 mt-1rounded-sm cursor-pointer hover:bg-red-600 duration-150 ease-in-out"
+              className="flex flex-row py-1 min-w-full px-1 mt-1rounded-sm cursor-pointer hover:bg-red-600 active:bg-red-900 transition-colors focus:bg-red-600"
               key={suggestedChar.id}
               onClick={() => handleSuggestionClick(suggestedChar)}
             >
