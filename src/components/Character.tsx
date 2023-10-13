@@ -1,11 +1,11 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import CharacterType from "../types/Character";
 import { findCharacterByName } from "../helpers/nameSearch";
 import { findComicsByUri } from "../helpers/comicsSearch";
 import ComicType from "../types/Comic";
 
 export const Character: React.FC = () => {
-  const [suggestion, setSuggestion] = useState([]);
+  const [suggestion, setSuggestion] = useState<CharacterType[]>([]);
   const [foundChar, setFoundChar] = useState<CharacterType[]>([]);
   const [foundComic, setFoundComic] = useState<ComicType[]>([]);
 
@@ -112,21 +112,21 @@ export const Character: React.FC = () => {
                       <span className="text-white font-medium">
                         {comic.title}
                       </span>
-
-                      <div className="">
-                        {comic.creators.items
-                          .slice(0, 2)
-                          .map((creator, idx) => (
-                            <span
-                              key={idx}
-                              className="text-[0.8rem] text-white font-thin"
-                            >
-                              {idx > 0 && ", "}
-                              {creator.name.length > 1 ? creator.name : ""}
-                              
-                            </span>
+                      {
+                        <div className="flex flex-row">
+                          {comic.creators.items.slice(0,2).map((creator, idx) => (
+                            <div key={idx}>
+                              <span
+                                  key={idx}
+                                  className="text-[0.8rem] text-white font-thin"
+                                >
+                                  {idx > 0 && ", "}
+                                  {creator.name.length > 1 ? creator.name : ""}
+                                </span>
+                            </div>
                           ))}
-                      </div>
+                        </div>
+                      }
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 export default interface CreatorType {
     id: string,
+    name: string,
     firstName: string,
     lastName: string,
     fullName: string,
